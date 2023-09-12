@@ -1,23 +1,23 @@
 # PudgyTurtle
 
-PudgyTurtle is like an encryption mode for stream ciphers: it uses the keystream
-to create a variable-length codeword for each plaintext nibble (4-bit group),
-and then encryptes each codeword by XOR'ing it to a different portion of the
-keystream.  
+PudgyTurtle is an "encryption mode" for stream ciphers: it uses some keystream
+to encode each plaintext-symbol, and a different part of the keystream to
+encipher this codeword (via XOR).  The code is 1-bit error-correcting and 
+non-systematic (i.e., the actual plaintext-symbol is not part of the codeword).   
 
 GOALS:
 ======
-  To begin, this repository will contain a very simple C-language code
-  which demonstrates the PudgyTurtle encryption / decryption process.
+  This repository contains a very simple C-language code
+  demonstrating basic PudgyTurtle encryption / decryption process.
 
-  In the future, we hope to add better implementations of PudgyTurtle
-  (i.e., more keystream-generator options; faster; better I/O; input
-  validation, etc.) as well as codes to run time-memory-data tradeoff
-  attacks against PudgyTurtle.
+  This code implements basic, DETERMINISTIC PudgyTurtle, with fixed-size
+  input/output: plaintext is grouped into 4-bit symbols (nibbles), and
+  ciphertext is produced as 8-bit symbols (bytes).
 
-      * As mentioned several times, this code is for research
-      * purposes only!  It's not a 'secure' production code 
-      * for end-users.
+      * This code is for research purposes only! 
+      * It's not a 'secure' production code for end-users. 
+      * EG: the secret-key, keystream, and keystream-generator
+        state are all purposely exposed to facilitate debugging.
 
 FILES:
 ======
